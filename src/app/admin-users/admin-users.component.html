@@ -2,10 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card" *ngIf="user_data">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Users List</h4>
-                        
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -18,116 +17,27 @@
                                         Name
                                     </th>
                                     <th>
-                                        Country
+                                        Email
                                     </th>
                                     <th>
-                                        City
-                                    </th>
-                                    <th>
-                                        Salary
+                                        Actions
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let user of user_data; index as i">
                                         <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Dakota Rice
+                                            {{ user.id }}
                                         </td>
                                         <td>
-                                            Niger
+                                            <img class="user-profile-min" src="{{ user.image }}">
+                                            {{ user.first_name }} {{ user.last_name }}
                                         </td>
                                         <td>
-                                            Oud-Turnhout
-                                        </td>
-                                        <td class="text-primary">
-                                            $36,738
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
+                                            {{ user.email }}
                                         </td>
                                         <td>
-                                            Minerva Hooper
-                                        </td>
-                                        <td>
-                                            Curaçao
-                                        </td>
-                                        <td>
-                                            Sinaai-Waas
-                                        </td>
-                                        <td class="text-primary">
-                                            $23,789
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            3
-                                        </td>
-                                        <td>
-                                            Sage Rodriguez
-                                        </td>
-                                        <td>
-                                            Netherlands
-                                        </td>
-                                        <td>
-                                            Baileux
-                                        </td>
-                                        <td class="text-primary">
-                                            $56,142
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            4
-                                        </td>
-                                        <td>
-                                            Philip Chaney
-                                        </td>
-                                        <td>
-                                            Korea, South
-                                        </td>
-                                        <td>
-                                            Overland Park
-                                        </td>
-                                        <td class="text-primary">
-                                            $38,735
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            Doris Greene
-                                        </td>
-                                        <td>
-                                            Malawi
-                                        </td>
-                                        <td>
-                                            Feldkirchen in Kärnten
-                                        </td>
-                                        <td class="text-primary">
-                                            $63,542
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            6
-                                        </td>
-                                        <td>
-                                            Mason Porter
-                                        </td>
-                                        <td>
-                                            Chile
-                                        </td>
-                                        <td>
-                                            Gloucester
-                                        </td>
-                                        <td class="text-primary">
-                                            $78,615
+                                            <a href="#" mat-raised-button><i class="material-icons">edit_note</i></a>
+                                            <a href="#" mat-raised-button><i class="material-icons">clear</i></a>
                                         </td>
                                     </tr>
                                 </tbody>
