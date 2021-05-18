@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card" *ngIf="user_data">
+                <div class="card" *ngIf="categories">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Users List <a mat-button class="pull-right" (click)="createUser()"><i class="material-icons">create</i> New</a> </h4>
+                        <h4 class="card-title ">Categories List <a mat-button class="pull-right" (click)="createCat()"><i class="material-icons">create</i> New</a> </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -17,27 +17,27 @@
                                         Name
                                     </th>
                                     <th>
-                                        Email
+                                        Description
                                     </th>
                                     <th>
                                         Actions
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let user of user_data; index as i">
+                                    <tr *ngFor="let category of categories; index as i">
                                         <td>
-                                            {{ user.id }}
+                                            {{ category.id }}
                                         </td>
                                         <td>
-                                            <img class="list-pic-min" src="{{ user.image }}">
-                                            {{ user.first_name }} {{ user.last_name }}
+                                            <img class="list-pic-min" src="{{ category.image }}">
+                                            {{ category.category }}
                                         </td>
                                         <td>
-                                            {{ user.email }}
+                                            {{ category.description }}
                                         </td>
                                         <td>
-                                            <a mat-raised-button (click)="editUser(user.id)"><i class="material-icons">edit_note</i></a>
-                                            <a mat-raised-button (click)="deleteUser(user.id)"><i class="material-icons">clear</i></a>
+                                            <a mat-raised-button (click)="editCat(category.id)"><i class="material-icons">edit_note</i></a>
+                                            <a mat-raised-button (click)="deleteCat(category.id)"><i class="material-icons">clear</i></a>
                                         </td>
                                     </tr>
                                 </tbody>

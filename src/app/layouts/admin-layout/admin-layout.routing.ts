@@ -8,6 +8,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { AdminUsersComponent } from '../../admin-users/admin-users.component';
+import { CategoriesComponent } from '../../categories/categories.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -60,5 +61,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'admin-users',     component: AdminUsersComponent },
+    { path: 'categories',     component: CategoriesComponent },
 
 ];

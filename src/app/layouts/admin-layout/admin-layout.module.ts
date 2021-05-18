@@ -6,6 +6,9 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { AdminUsersComponent } from '../../admin-users/admin-users.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
+import { ProfileDialogComponent } from '../../profile-dialog/profile-dialog.component';
+import { CategoriesComponent } from '../../categories/categories.component';
+import { CategoryModalComponent } from '../../category-modal/category-modal.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
 import { IconsComponent } from '../../icons/icons.component';
@@ -35,6 +38,9 @@ import { MatSelectModule } from '@angular/material/select';
     DashboardComponent,
     AdminUsersComponent,
     UserProfileComponent,
+    ProfileDialogComponent,
+    CategoryModalComponent,
+    CategoriesComponent,
     TableListComponent,
     TypographyComponent,
     IconsComponent,

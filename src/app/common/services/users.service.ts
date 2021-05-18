@@ -17,6 +17,14 @@ export class UsersService {
     return this.http.get(this.usersUrl+'/'+id);
   }
 
+  resgisterUser(user: any){
+    return this.http.post(this.usersUrl,user);
+  }
+
+  deleteUser(id:any){
+    return this.http.delete(this.usersUrl+'/'+id);
+  }
+
   updateUsers(id:any,user:any){
     return this.http.put(this.usersUrl+'/'+id,user);
   }
