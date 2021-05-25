@@ -15,6 +15,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+.profile_image{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
 .list-pic-min{
   height: 50px;
   width: 50px;

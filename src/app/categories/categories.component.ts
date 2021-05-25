@@ -68,15 +68,19 @@ export class CategoriesComponent implements OnInit {
     )
   }
 
-  createCat(id:any){
-    this.dialog.open(CategoryModalComponent);
+  createCat(){
+    this.dialog.open(CategoryModalComponent,{
+      width: '600px',
+      data: {title:'Add Category',button:'Add',mode:'add',id:0},
+    });
   }
 
-  editCat(id:any){
-    this.fetchCategory(id)
+  editCat(data:any){
     this.dialog.open(CategoryModalComponent,{
-      data : this.category
+      width: '600px',
+      data : {form:data,title:'Update Category',button:'Update',mode:'edit',id:data.id}
     });
+    
   }
 
 }

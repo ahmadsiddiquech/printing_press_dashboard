@@ -36,8 +36,8 @@
                                             {{ category.description }}
                                         </td>
                                         <td>
-                                            <a mat-raised-button (click)="editCat(category.id)"><i class="material-icons">edit_note</i></a>
-                                            <a mat-raised-button (click)="deleteCat(category.id)"><i class="material-icons">clear</i></a>
+                                            <a mat-raised-button (click)=editCat(category) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                            <a mat-raised-button (click)="deleteCat(category.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
                                         </td>
                                     </tr>
                                 </tbody>
