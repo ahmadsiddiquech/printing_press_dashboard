@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoriesService } from 'app/common/services/categories.service';
 import { CategoryModalComponent } from 'app/category-modal/category-modal.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -11,13 +12,15 @@ import { CategoryModalComponent } from 'app/category-modal/category-modal.compon
   providers: [MatSnackBar,MatDialog]
 })
 export class CategoriesComponent implements OnInit {
-  categories: any;
+  categories:any;
   category: any;
 
   constructor(private catService : CategoriesService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit(){
-    this.fetchCategories();
+    this.catService.getCategorySubject.subscribe(()=>{
+      this.fetchCategories();
+    })
   }
 
   fetchCategories(){
@@ -71,14 +74,14 @@ export class CategoriesComponent implements OnInit {
   createCat(){
     this.dialog.open(CategoryModalComponent,{
       width: '600px',
-      data: {title:'Add Category',button:'Add',mode:'add',id:0},
+      data: {title:'Add Category',button:'Add',id:0},
     });
   }
 
   editCat(data:any){
     this.dialog.open(CategoryModalComponent,{
       width: '600px',
-      data : {form:data,title:'Update Category',button:'Update',mode:'edit',id:data.id}
+      data : {form:data,title:'Update Category',button:'Update',id:data.id}
     });
     
   }

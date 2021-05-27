@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,9 @@ export class CategoriesService {
 
   private categoriesUrl = `http://localhost:3000/api/categories`;
   constructor(private http:HttpClient) { }
-  getCategories(){
+  public getCategorySubject:BehaviorSubject<any>=new BehaviorSubject<any>(false);
+
+  getCategories():Observable<any>{
     return this.http.get(this.categoriesUrl);
   }
 

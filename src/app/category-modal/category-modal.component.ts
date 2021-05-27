@@ -51,7 +51,19 @@ export class CategoryModalComponent implements OnInit {
       this.catService.addCategory(this.category)
       .subscribe(
         response => {
-          
+          this.data = response;
+          this.id = this.data.data.id;
+          if(this.selectedFile != null){
+            console.log(this.id)
+            const formdata = new FormData();
+            formdata.append('image', this.selectedFile, this.selectedFile.name);
+            this.catService.updateCategoriesImage(this.id,formdata)
+            .subscribe(
+              response => {
+                this.catService.getCategorySubject.next(true);
+              }
+            )
+          }
         }
       )
     }else if(this.id>0){
