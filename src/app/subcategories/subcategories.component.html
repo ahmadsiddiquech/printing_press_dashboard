@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card" *ngIf="user_data">
+                <div class="card" *ngIf="categories">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Users List <a mat-button class="pull-right" (click)="createUser()"><i class="material-icons">create</i> New</a> </h4>
+                        <h4 class="card-title ">Subcategories List <a mat-button class="pull-right" (click)="createSubcat()"><i class="material-icons">create</i> New</a> </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -17,27 +17,33 @@
                                         Name
                                     </th>
                                     <th>
-                                        Email
+                                        Category
+                                    </th>
+                                    <th>
+                                        Description
                                     </th>
                                     <th>
                                         Actions
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let user of user_data; index as i">
+                                    <tr *ngFor="let category of categories">
                                         <td>
-                                            {{ user.id }}
+                                            {{ subcategory.id }}
                                         </td>
                                         <td>
-                                            <img class="list-pic-min" src="{{ user.image }}">
-                                            {{ user.first_name }} {{ user.last_name }}
+                                            <img class="list-pic-min" src="{{ subcategory.image }}">
+                                            {{ subcategory.name }}
                                         </td>
                                         <td>
-                                            {{ user.email }}
+                                            {{ subcategory.category }}
                                         </td>
                                         <td>
-                                            <a mat-raised-button (click)="editUser(user)" class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
-                                            <a mat-raised-button (click)="deleteUser(user.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
+                                            {{ subcategory.description }}
+                                        </td>
+                                        <td>
+                                            <a mat-raised-button (click)=editCat(subcategory) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                            <a mat-raised-button (click)="deleteCat(subcategory.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
                                         </td>
                                     </tr>
                                 </tbody>

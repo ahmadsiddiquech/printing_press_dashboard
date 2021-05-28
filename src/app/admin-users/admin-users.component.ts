@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../common/services/users.service';
 import {MatSnackBar} from '@angular/material/snack-bar'
 import {MatDialog} from '@angular/material/dialog';
-import { ProfileDialogComponent } from 'app/profile-dialog/profile-dialog.component';
+import { AdminUsersModalComponent } from 'app/admin-users-modal/admin-users-modal.component';
 
 @Component({
   selector: 'app-admin-users',
@@ -21,7 +21,9 @@ export class AdminUsersComponent implements OnInit {
   constructor(private userService : UsersService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
     ngOnInit(){
-      this.fetchUsers();
+      this.userService.getUsersSubject.subscribe(()=>{
+        this.fetchUsers();
+      })
     }
 
     deleteUser(id:any){
@@ -58,32 +60,19 @@ export class AdminUsersComponent implements OnInit {
       )
     }
 
-    fetchUser(id:any){
-      this.userService.getUser(id)
-      .subscribe(
-        response => {
-          this.user = response;
-          if(this.user.success){
-            this.user = this.user.data;
-            
-            console.log(this.user)
-          }
-        },
-        error => {
-          console.log(error)
-        }
-      )
-    }
-
-    createUser(id:any){
-      this.dialog.open(ProfileDialogComponent);
-    }
-
-    editUser(id:any){
-      this.fetchUser(id)
-      this.dialog.open(ProfileDialogComponent,{
-        data : this.user
+    createUser(){
+      this.dialog.open(AdminUsersModalComponent,{
+        width: '600px',
+        data: {title:'Add User',button:'Add',id:0},
       });
+    }
+  
+    editUser(data:any){
+      this.dialog.open(AdminUsersModalComponent,{
+        width: '600px',
+        data : {form:data,title:'Update User',button:'Update',id:data.id}
+      });
+      
     }
 
 }

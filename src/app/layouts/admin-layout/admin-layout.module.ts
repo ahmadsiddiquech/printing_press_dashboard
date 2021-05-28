@@ -6,14 +6,11 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { AdminUsersComponent } from '../../admin-users/admin-users.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { ProfileDialogComponent } from '../../profile-dialog/profile-dialog.component';
+import { AdminUsersModalComponent } from '../../admin-users-modal/admin-users-modal.component';
 import { CategoriesComponent } from '../../categories/categories.component';
 import { CategoryModalComponent } from '../../category-modal/category-modal.component';
-import { TableListComponent } from '../../table-list/table-list.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
+import { SubcategoriesComponent } from '../../subcategories/subcategories.component';
+import { SubcategoriesModalComponent } from '../../subcategories-modal/subcategories-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
@@ -41,14 +38,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     DashboardComponent,
     AdminUsersComponent,
     UserProfileComponent,
-    ProfileDialogComponent,
+    AdminUsersModalComponent,
     CategoryModalComponent,
     CategoriesComponent,
-    TableListComponent,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
+    SubcategoriesModalComponent,
+    SubcategoriesComponent
   ]
 })
 

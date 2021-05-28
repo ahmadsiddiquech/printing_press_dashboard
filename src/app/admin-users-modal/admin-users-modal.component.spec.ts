@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileDialogComponent } from './profile-dialog.component';
+import { AdminUsersModalComponent } from './admin-users-modal.component';
 
-describe('ProfileDialogComponent', () => {
-  let component: ProfileDialogComponent;
-  let fixture: ComponentFixture<ProfileDialogComponent>;
+describe('AdminUsersModalComponent', () => {
+  let component: AdminUsersModalComponent;
+  let fixture: ComponentFixture<AdminUsersModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileDialogComponent ]
+      declarations: [ AdminUsersModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileDialogComponent);
+    fixture = TestBed.createComponent(AdminUsersModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

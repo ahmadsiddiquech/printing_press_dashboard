@@ -1,26 +1,26 @@
-import { Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CategoriesService } from '../common/services/categories.service';
+import { UsersService } from 'app/common/services/users.service';
 
 @Component({
-  selector: 'app-category-modal',
-  templateUrl: './category-modal.component.html',
-  styleUrls: ['./category-modal.component.css']
+  selector: 'app-admin-users-modal',
+  templateUrl: './admin-users-modal.component.html',
+  styleUrls: ['./admin-users-modal.component.css']
 })
-export class CategoryModalComponent implements OnInit {
+export class AdminUsersModalComponent{
 
   data = null;
   id:any;
   title : any;
   button : any;
-  category: any;
+  user: any;
   myFile: any;
   selectedFile: any;
 
-  constructor(private catService : CategoriesService,
+  constructor(private userService : UsersService,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<CategoryModalComponent>,
+    public dialogRef: MatDialogRef<AdminUsersModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
       this.data = data.form
       this.title = data.title
@@ -28,27 +28,30 @@ export class CategoryModalComponent implements OnInit {
       this.id = data.id
     }
 
-    ngOnInit(){
+    ngOnInit(){   
       if(this.data != null){
-        this.cat_form.controls['category'].setValue(this.data.category);
-        this.cat_form.controls['description'].setValue(this.data.description);
+        this.profile_form.controls['first_name'].setValue(this.data.first_name);
+        this.profile_form.controls['last_name'].setValue(this.data.last_name);
+        this.profile_form.controls['email'].setValue(this.data.email);
       }
     }
 
-   
-  cat_form = new FormGroup({
-    category: new FormControl(''),
-    description: new FormControl(''),
-    image: new FormControl('')
-  });
+    profile_form = new FormGroup({
+      first_name: new FormControl(''),
+      last_name: new FormControl(''),
+      email: new FormControl(''),
+      password: new FormControl(''),
+      image: new FormControl('')
+    });
 
 
-  submitCategory(){
+  submitUser(){
     this.dialogRef.close();
-    this.category = this.cat_form.value;
-    delete this.category.image;
+    this.user = this.profile_form.value;
+    delete this.user.image;
     if(this.id==0){
-      this.catService.addCategory(this.category)
+      this.user.role = "admin"
+      this.userService.addUser(this.user)
       .subscribe(
         response => {
           this.data = response;
@@ -57,30 +60,31 @@ export class CategoryModalComponent implements OnInit {
             console.log(this.id)
             const formdata = new FormData();
             formdata.append('image', this.selectedFile, this.selectedFile.name);
-            this.catService.updateCategoriesImage(this.id,formdata)
+            this.userService.updateUsersImage(this.id,formdata)
             .subscribe(
               response => {
-                this.catService.getCategorySubject.next(true);
+                this.userService.getUsersSubject.next(true);
               }
             )
           }
         }
       )
     }else if(this.id>0){
+      delete this.user.password;
       if(this.selectedFile != null){
         const formdata = new FormData();
-        this.category.append('image', this.selectedFile, this.selectedFile.name);
-        this.catService.updateCategoriesImage(this.id,formdata)
+        formdata.append('image', this.selectedFile, this.selectedFile.name);
+        this.userService.updateUsersImage(this.id,formdata)
         .subscribe(
           response => {
             
           }
         )
       }
-      this.catService.updateCategories(this.id,this.category)
+      this.userService.updateUsers(this.id,this.user)
       .subscribe(
         response => {
-          this.catService.getCategorySubject.next(true);
+          this.userService.getUsersSubject.next(true);
         }
       )
     }

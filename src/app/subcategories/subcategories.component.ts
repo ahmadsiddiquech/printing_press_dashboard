@@ -1,30 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CategoriesService } from 'app/common/services/categories.service';
-import { CategoryModalComponent } from 'app/category-modal/category-modal.component';
-import { Observable } from 'rxjs';
+import { SubcategoriesService } from 'app/common/services/subcategories.service';
+import { SubcategoriesModalComponent } from 'app/subcategories-modal/subcategories-modal.component';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css'],
-  providers: [MatSnackBar,MatDialog]
+  selector: 'app-subcategories',
+  templateUrl: './subcategories.component.html',
+  styleUrls: ['./subcategories.component.css']
 })
-export class CategoriesComponent implements OnInit {
+export class SubcategoriesComponent implements OnInit {
   categories:any;
   category: any;
 
-  constructor(private catService : CategoriesService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(private catService : SubcategoriesService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit(){
-    this.catService.getCategorySubject.subscribe(()=>{
+    this.catService.getSubcategorySubject.subscribe(()=>{
       this.fetchCategories();
     })
   }
 
   fetchCategories(){
-    this.catService.getCategories()
+    this.catService.getSubcategories()
     .subscribe(
       response => {
         this.categories = response;
@@ -39,7 +37,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   deleteCat(id:any){
-    this.catService.deleteCategory(id)
+    this.catService.deleteSubcategory(id)
     .subscribe(
       response => {
         this.categories = response;
@@ -57,16 +55,16 @@ export class CategoriesComponent implements OnInit {
   }
 
   createCat(){
-    this.dialog.open(CategoryModalComponent,{
+    this.dialog.open(SubcategoriesModalComponent,{
       width: '600px',
-      data: {title:'Add Category',button:'Add',id:0},
+      data: {title:'Add Subcategory',button:'Add',id:0},
     });
   }
 
   editCat(data:any){
-    this.dialog.open(CategoryModalComponent,{
+    this.dialog.open(SubcategoriesModalComponent,{
       width: '600px',
-      data : {form:data,title:'Update Category',button:'Update',id:data.id}
+      data : {form:data,title:'Update Subcategory',button:'Update',id:data.id}
     });
     
   }
