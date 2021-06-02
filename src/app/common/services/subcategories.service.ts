@@ -15,7 +15,7 @@ export class SubcategoriesService {
     return this.http.get(this.subcategoriesUrl);
   }
 
-  getsubSubcategory(id:any){
+  getSubcategory(id:any){
     return this.http.get(this.subcategoriesUrl+'/'+id);
   }
 

@@ -5,6 +5,8 @@ import { UserProfileComponent } from '../../user-profile/user-profile.component'
 import { AdminUsersComponent } from '../../admin-users/admin-users.component';
 import { CategoriesComponent } from '../../categories/categories.component';
 import { SubcategoriesComponent } from 'app/subcategories/subcategories.component';
+import { FinishingoptionsComponent } from 'app/finishingoptions/finishingoptions.component';
+import { ProductsComponent } from 'app/products/products.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -54,5 +56,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'admin-users',     component: AdminUsersComponent },
     { path: 'categories',     component: CategoriesComponent },
     { path: 'subcategories',     component: SubcategoriesComponent },
+    { path: 'finishingoptions',     component: FinishingoptionsComponent },
+    { path: 'products',     component: ProductsComponent },
 
 ];

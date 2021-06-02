@@ -7,27 +7,29 @@ import { SubcategoriesModalComponent } from 'app/subcategories-modal/subcategori
 @Component({
   selector: 'app-subcategories',
   templateUrl: './subcategories.component.html',
-  styleUrls: ['./subcategories.component.css']
+  styleUrls: ['./subcategories.component.css'],
+  providers: [MatSnackBar,MatDialog]
 })
 export class SubcategoriesComponent implements OnInit {
-  categories:any;
+  subcategories:any;
   category: any;
 
-  constructor(private catService : SubcategoriesService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(private subcatService : SubcategoriesService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit(){
-    this.catService.getSubcategorySubject.subscribe(()=>{
-      this.fetchCategories();
+    this.subcatService.getSubcategorySubject.subscribe(()=>{
+      this.fetchSubcategories();
     })
+    
   }
 
-  fetchCategories(){
-    this.catService.getSubcategories()
+  fetchSubcategories(){
+    this.subcatService.getSubcategories()
     .subscribe(
       response => {
-        this.categories = response;
-        if(this.categories.success){
-          this.categories = this.categories.data;
+        this.subcategories = response;
+        if(this.subcategories.success){
+          this.subcategories = this.subcategories.data;
         }
       },
       error => {
@@ -36,16 +38,16 @@ export class SubcategoriesComponent implements OnInit {
     )
   }
 
-  deleteCat(id:any){
-    this.catService.deleteSubcategory(id)
+  deleteSubcat(id:any){
+    this.subcatService.deleteSubcategory(id)
     .subscribe(
       response => {
-        this.categories = response;
-        if(this.categories.success){
-          this.snackBar.open(this.categories.message, 'Okay', {
+        this.subcategories = response;
+        if(this.subcategories.success){
+          this.snackBar.open(this.subcategories.message, 'Okay', {
             duration: 5 * 1000,
           });
-          this.fetchCategories();
+          this.fetchSubcategories();
         }
       },
       error => {
@@ -54,14 +56,14 @@ export class SubcategoriesComponent implements OnInit {
     )
   }
 
-  createCat(){
+  createSubcat(){
     this.dialog.open(SubcategoriesModalComponent,{
       width: '600px',
       data: {title:'Add Subcategory',button:'Add',id:0},
     });
   }
 
-  editCat(data:any){
+  editSubcat(data:any){
     this.dialog.open(SubcategoriesModalComponent,{
       width: '600px',
       data : {form:data,title:'Update Subcategory',button:'Update',id:data.id}

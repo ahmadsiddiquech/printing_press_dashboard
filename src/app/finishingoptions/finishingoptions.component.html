@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card" *ngIf="subcategories">
+                <div class="card" *ngIf="foptions">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Subcategories List <a mat-button class="pull-right" (click)="createSubcat()"><i class="material-icons">create</i> New</a> </h4>
+                        <h4 class="card-title ">Finishing Options List <a mat-button class="pull-right" (click)="createFinishingoption()"><i class="material-icons">create</i> New</a> </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -20,30 +20,29 @@
                                         Category
                                     </th>
                                     <th>
-                                        Description
+                                        Subcategory
                                     </th>
                                     <th>
                                         Actions
                                     </th>
                                 </thead>
                                 <tbody >
-                                    <tr *ngFor="let subcategory of subcategories">
+                                    <tr *ngFor="let foption of foptions">
                                         <td>
-                                            {{ subcategory.id }}
+                                            {{ foption.id }}
                                         </td>
                                         <td>
-                                            <img class="list-pic-min" src="{{ subcategory.image }}">
-                                            {{ subcategory.name }}
+                                            {{ foption.name }}
                                         </td>
                                         <td>
-                                            {{ subcategory.category }}
+                                            {{ foption.category }}
                                         </td>
                                         <td>
-                                            {{ subcategory.description }}
+                                            {{ foption.subcategory }}
                                         </td>
                                         <td>
-                                            <a mat-raised-button (click)=editSubcat(subcategory) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
-                                            <a mat-raised-button (click)="deleteSubcat(subcategory.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
+                                            <a mat-raised-button (click)=editFinishingoption(foption) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                            <a mat-raised-button (click)="deleteFinishingoption(foption.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
                                         </td>
                                     </tr>
                                 </tbody>

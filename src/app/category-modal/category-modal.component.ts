@@ -8,7 +8,7 @@ import { CategoriesService } from '../common/services/categories.service';
   templateUrl: './category-modal.component.html',
   styleUrls: ['./category-modal.component.css']
 })
-export class CategoryModalComponent implements OnInit {
+export class CategoryModalComponent{
 
   data = null;
   id:any;
@@ -69,7 +69,7 @@ export class CategoryModalComponent implements OnInit {
     }else if(this.id>0){
       if(this.selectedFile != null){
         const formdata = new FormData();
-        this.category.append('image', this.selectedFile, this.selectedFile.name);
+        formdata.append('image', this.selectedFile, this.selectedFile.name);
         this.catService.updateCategoriesImage(this.id,formdata)
         .subscribe(
           response => {
