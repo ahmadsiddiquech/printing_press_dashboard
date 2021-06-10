@@ -41,17 +41,17 @@ export class FinishingoptionsModalComponent implements OnInit {
           this.categories = this.categories.data;
         }
       )
-      this.subcatService.getSubcategories()
-      .subscribe(
-        response => {
-          this.subcategories = response;
-          this.subcategories = this.subcategories.data;
-        }
-      )
       if(this.data != null){
         this.cat_form.controls['name'].setValue(this.data.name);
         this.cat_form.controls['category_id'].setValue(this.data.category_id);
         this.cat_form.controls['subcategory_id'].setValue(this.data.subcategory_id);
+        this.subcatService.getSubcategoryByCategory(this.data.category_id)
+        .subscribe(
+          response => {
+            this.subcategories = response;
+            this.subcategories = this.subcategories.data;
+          }
+        )
       }
     }
 
@@ -61,6 +61,17 @@ export class FinishingoptionsModalComponent implements OnInit {
     subcategory_id: new FormControl(''),
     category_id: new FormControl('')
   });
+
+  change_subcategories(id:any){
+    this.subcatService.getSubcategoryByCategory(id)
+    .subscribe(
+      response => {
+        this.subcategories = response;
+        this.subcategories = this.subcategories.data;
+        
+      }
+    )     
+  }
 
 
 
@@ -84,7 +95,6 @@ export class FinishingoptionsModalComponent implements OnInit {
         }
       )
     }
-      
   }
 
   onNoClick(): void {

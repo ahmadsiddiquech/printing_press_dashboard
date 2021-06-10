@@ -19,6 +19,10 @@ export class SubcategoriesService {
     return this.http.get(this.subcategoriesUrl+'/'+id);
   }
 
+  getSubcategoryByCategory(id:any){
+    return this.http.get(this.subcategoriesUrl+'/get_subcategory_by_category/'+id);
+  }
+
   addSubcategory(subcategory: any){
     return this.http.post(this.subcategoriesUrl,subcategory);
   }

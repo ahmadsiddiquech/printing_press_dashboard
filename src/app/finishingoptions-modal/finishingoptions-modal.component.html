@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <mat-form-field>
                 <mat-label>Select Category</mat-label>
-                <mat-select formControlName="category_id">
+                <mat-select formControlName="category_id" #category_id (selectionChange)='change_subcategories(category_id.value)'>
                     <mat-option *ngFor="let category of categories" [value]="category.id">
                         {{category.category}}
                     </mat-option>
@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <mat-form-field>
                 <mat-label>Select Subcategory</mat-label>
-                <mat-select formControlName="subcategory_id">
+                <mat-select formControlName="subcategory_id" >
                     <mat-option *ngFor="let subcategory of subcategories" [value]="subcategory.id">
                         {{subcategory.name}}
                     </mat-option>
