@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  deleteSubcat(id:any){
+  deleteProduct(id:any){
     this.subcatService.deleteSubcategory(id)
     .subscribe(
       response => {
@@ -99,19 +99,17 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  createSubcat(){
+  createProducts(){
     this.dialog.open(ProductsModalComponent,{
       width: '600px',
       data: {title:'Add Products',button:'Add',id:0},
     });
   }
 
-  editSubcat(data:any){
+  editProduct(data:any){
     this.dialog.open(ProductsModalComponent,{
       width: '600px',
       data : {form:data,title:'Update Product',button:'Update',id:data.id}
     });
-    
   }
-
 }

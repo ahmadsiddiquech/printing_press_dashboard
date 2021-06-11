@@ -15,6 +15,10 @@ export class FinishingoptionsService {
     return this.http.get(this.finishingoptionsUrl);
   }
 
+  getFinishingoptionBySubcategory(id:any){
+    return this.http.get(this.finishingoptionsUrl+'/get_finishingoption_by_subcategory/'+id);
+  }
+
   getFinishingoption(id:any){
     return this.http.get(this.finishingoptionsUrl+'/'+id);
   }
