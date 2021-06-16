@@ -2,13 +2,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card" *ngIf="categories">
+                <div class="card" >
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Categories List <a mat-button class="pull-right" (click)="createCat()"><i class="material-icons">create</i> New</a> </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" *ngIf="categories">
                                 <thead class=" text-primary">
                                     <th>
                                         ID

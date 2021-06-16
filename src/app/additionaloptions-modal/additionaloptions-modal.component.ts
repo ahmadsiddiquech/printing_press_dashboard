@@ -1,16 +1,16 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AdditionaloptionsService } from 'app/common/services/additionaloptions.service';
 import { CategoriesService } from 'app/common/services/categories.service';
-import { FinishingoptionsService } from 'app/common/services/finishingoptions.service';
 import { SubcategoriesService } from 'app/common/services/subcategories.service';
 
 @Component({
-  selector: 'app-finishingoptions-modal',
-  templateUrl: './finishingoptions-modal.component.html',
-  styleUrls: ['./finishingoptions-modal.component.css']
+  selector: 'app-additionaloptions-modal',
+  templateUrl: './additionaloptions-modal.component.html',
+  styleUrls: ['./additionaloptions-modal.component.css']
 })
-export class FinishingoptionsModalComponent implements OnInit {
+export class AdditionaloptionsModalComponent implements OnInit {
 
   data = null;
   id:any;
@@ -19,14 +19,14 @@ export class FinishingoptionsModalComponent implements OnInit {
   categories: any;
   selectedFile: any;
   subcategories: any;
-  finishoptions: any;
+  additionaloptions: any;
   result: any;
 
   constructor(private subcatService : SubcategoriesService,
     private catService : CategoriesService,
-    private foptionService : FinishingoptionsService,
+    private aoptionService : AdditionaloptionsService,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<FinishingoptionsModalComponent>,
+    public dialogRef: MatDialogRef<AdditionaloptionsModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
       this.data = data.form
       this.title = data.title
@@ -43,10 +43,10 @@ export class FinishingoptionsModalComponent implements OnInit {
         }
       )
       if(this.data != null){
-        this.cat_form.controls['name'].setValue(this.data.name);
-        this.cat_form.controls['category_id'].setValue(this.data.category_id);
-        this.cat_form.controls['subcategory_id'].setValue(this.data.subcategory_id);
-        this.cat_form.controls['price'].setValue(this.data.price);
+        this.aoptions_form.controls['name'].setValue(this.data.name);
+        this.aoptions_form.controls['category_id'].setValue(this.data.category_id);
+        this.aoptions_form.controls['subcategory_id'].setValue(this.data.subcategory_id);
+        this.aoptions_form.controls['price'].setValue(this.data.price);
         this.subcatService.getSubcategoryByCategory(this.data.category_id)
         .subscribe(
           response => {
@@ -62,7 +62,7 @@ export class FinishingoptionsModalComponent implements OnInit {
     }
 
    
-  cat_form = new FormGroup({
+  aoptions_form = new FormGroup({
     name: new FormControl(''),
     subcategory_id: new FormControl(''),
     category_id: new FormControl(''),
@@ -82,23 +82,24 @@ export class FinishingoptionsModalComponent implements OnInit {
 
 
 
-  submitFinishoptions(){
-    this.dialogRef.close();
-    this.finishoptions = this.cat_form.value;
+  submitAdditionaloptions(){
+    this.additionaloptions = this.aoptions_form.value;
     if(this.id==0){
-      this.foptionService.addFinishingoption(this.finishoptions)
+      this.aoptionService.addAdditionaloption(this.additionaloptions)
       .subscribe(
         response => {
           this.data = response;
           this.id = this.data.data.id;
-          this.foptionService.getFinishingoptionSubject.next(true);
+          this.aoptionService.getAdditionaloptionSubject.next(true);
+          this.dialogRef.close();
         }
       )
     }else if(this.id>0){
-      this.foptionService.updateFinishingoptions(this.id,this.finishoptions)
+      this.aoptionService.updateAdditionaloptions(this.id,this.additionaloptions)
       .subscribe(
         response => {
-          this.foptionService.getFinishingoptionSubject.next(true);
+          this.aoptionService.getAdditionaloptionSubject.next(true);
+          this.dialogRef.close();
         }
       )
     }

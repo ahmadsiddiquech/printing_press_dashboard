@@ -24,6 +24,9 @@ export class ProductsModalComponent implements OnInit {
   finishoptions: any;
   product:any;
   myFile: any;
+  result: any;
+  f_options: any;
+  f_op = [];
 
   constructor(private subcatService : SubcategoriesService,
     private catService : CategoriesService,
@@ -32,10 +35,11 @@ export class ProductsModalComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<FinishingoptionsModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
-      this.data = data.form
-      this.title = data.title
-      this.button = data.button
-      this.id = data.id
+        this.data = data.form?.data
+        this.f_options = data.form?.f_options
+        this.title = data.title
+        this.button = data.button
+        this.id = data.id
     }
 
     ngOnInit(){
@@ -47,12 +51,18 @@ export class ProductsModalComponent implements OnInit {
         }
       )
       if(this.data != null){
+
         this.product_form.controls['name'].setValue(this.data.name);
         this.product_form.controls['price'].setValue(this.data.price);
         this.product_form.controls['category_id'].setValue(this.data.category_id);
         this.product_form.controls['subcategory_id'].setValue(this.data.subcategory_id);
         this.product_form.controls['description'].setValue(this.data.description);
-        this.product_form.controls['finishingoptions_id'].setValue(this.data.finishingoptions_id);
+        
+        for(let i = 0;i < this.f_options.length;i++){
+          this.f_op.push(this.f_options[i].id);
+        }
+        this.product_form.controls['finishingoptions_id'].setValue(this.f_op);
+        
         this.subcatService.getSubcategoryByCategory(this.data.category_id)
         .subscribe(
           response => {
@@ -85,8 +95,12 @@ export class ProductsModalComponent implements OnInit {
     this.subcatService.getSubcategoryByCategory(id)
     .subscribe(
       response => {
-        this.subcategories = response;
-        this.subcategories = this.subcategories.data;
+        this.result = response;
+        if(this.result.success){
+          this.subcategories = this.result.data;
+        }else{
+          this.subcategories = [{id: 0, name: 'No Record Found'}];
+        }
       }
     )     
   }
@@ -95,8 +109,12 @@ export class ProductsModalComponent implements OnInit {
     this.foptionService.getFinishingoptionBySubcategory(id)
     .subscribe(
       response => {
-        this.finishoptions = response;
-        this.finishoptions = this.finishoptions.data;
+        this.result = response;
+        if(this.result.success){
+          this.finishoptions = this.result.data;
+        }else{
+          this.finishoptions = [{id: 0, name: 'No Record Found'}];
+        }
       }
     )     
   }
@@ -113,7 +131,6 @@ export class ProductsModalComponent implements OnInit {
           this.data = response;
           this.id = this.data.data.id;
           if(this.selectedFile != null){
-            console.log(this.id)
             const formdata = new FormData();
             formdata.append('image', this.selectedFile, this.selectedFile.name);
             this.productService.updateProductsImage(this.id,formdata)
@@ -129,7 +146,6 @@ export class ProductsModalComponent implements OnInit {
     }else if(this.id>0){
       if(this.selectedFile != null){
         const formdata = new FormData();
-        debugger;
         formdata.append('image', this.selectedFile, this.selectedFile.name);
         this.productService.updateProductsImage(this.id,formdata)
         .subscribe(

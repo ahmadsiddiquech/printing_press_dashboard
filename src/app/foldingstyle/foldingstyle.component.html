@@ -4,11 +4,11 @@
             <div class="col-md-12">
                 <div class="card" >
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Finishing Options List <a mat-button class="pull-right" (click)="createFinishingoption()"><i class="material-icons">create</i> New</a> </h4>
+                        <h4 class="card-title ">Folding Style List <a mat-button class="pull-right" (click)="createFoldingstyle()"><i class="material-icons">create</i> New</a> </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" *ngIf="foptions">
+                            <table class="table" *ngIf="foldingstyle">
                                 <thead class=" text-primary">
                                     <th>
                                         ID
@@ -27,22 +27,22 @@
                                     </th>
                                 </thead>
                                 <tbody >
-                                    <tr *ngFor="let foption of foptions">
+                                    <tr *ngFor="let folding of foldingstyle">
                                         <td>
-                                            {{ foption.id }}
+                                            {{ folding.id }}
                                         </td>
                                         <td>
-                                            {{ foption.name }}
+                                            {{ folding.name }}
                                         </td>
                                         <td>
-                                            {{ foption.category }}
+                                            {{ folding.category }}
                                         </td>
                                         <td>
-                                            {{ foption.subcategory }}
+                                            {{ folding.subcategory }}
                                         </td>
                                         <td>
-                                            <a mat-raised-button (click)=editFinishingoption(foption) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
-                                            <a mat-raised-button (click)="deleteFinishingoption(foption.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
+                                            <a mat-raised-button (click)=editFoldingstyle(folding) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                            <a mat-raised-button (click)="deleteFoldingstyle(folding.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -54,4 +54,3 @@
         </div>
     </div>
   </div>
-  

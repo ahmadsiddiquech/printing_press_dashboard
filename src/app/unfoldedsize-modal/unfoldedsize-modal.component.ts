@@ -1,16 +1,16 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoriesService } from 'app/common/services/categories.service';
-import { FinishingoptionsService } from 'app/common/services/finishingoptions.service';
 import { SubcategoriesService } from 'app/common/services/subcategories.service';
+import { UnfoldedsizeService } from 'app/common/services/unfoldedsize.service';
 
 @Component({
-  selector: 'app-finishingoptions-modal',
-  templateUrl: './finishingoptions-modal.component.html',
-  styleUrls: ['./finishingoptions-modal.component.css']
+  selector: 'app-unfoldedsize-modal',
+  templateUrl: './unfoldedsize-modal.component.html',
+  styleUrls: ['./unfoldedsize-modal.component.css']
 })
-export class FinishingoptionsModalComponent implements OnInit {
+export class UnfoldedsizeModalComponent implements OnInit {
 
   data = null;
   id:any;
@@ -19,14 +19,14 @@ export class FinishingoptionsModalComponent implements OnInit {
   categories: any;
   selectedFile: any;
   subcategories: any;
-  finishoptions: any;
+  unfoldedsize: any;
   result: any;
 
   constructor(private subcatService : SubcategoriesService,
     private catService : CategoriesService,
-    private foptionService : FinishingoptionsService,
+    private unfoldedService : UnfoldedsizeService,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<FinishingoptionsModalComponent>,
+    public dialogRef: MatDialogRef<UnfoldedsizeModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
       this.data = data.form
       this.title = data.title
@@ -43,10 +43,10 @@ export class FinishingoptionsModalComponent implements OnInit {
         }
       )
       if(this.data != null){
-        this.cat_form.controls['name'].setValue(this.data.name);
-        this.cat_form.controls['category_id'].setValue(this.data.category_id);
-        this.cat_form.controls['subcategory_id'].setValue(this.data.subcategory_id);
-        this.cat_form.controls['price'].setValue(this.data.price);
+        this.unfolded_form.controls['name'].setValue(this.data.name);
+        this.unfolded_form.controls['category_id'].setValue(this.data.category_id);
+        this.unfolded_form.controls['subcategory_id'].setValue(this.data.subcategory_id);
+        this.unfolded_form.controls['price'].setValue(this.data.price);
         this.subcatService.getSubcategoryByCategory(this.data.category_id)
         .subscribe(
           response => {
@@ -62,7 +62,7 @@ export class FinishingoptionsModalComponent implements OnInit {
     }
 
    
-  cat_form = new FormGroup({
+  unfolded_form = new FormGroup({
     name: new FormControl(''),
     subcategory_id: new FormControl(''),
     category_id: new FormControl(''),
@@ -82,23 +82,24 @@ export class FinishingoptionsModalComponent implements OnInit {
 
 
 
-  submitFinishoptions(){
-    this.dialogRef.close();
-    this.finishoptions = this.cat_form.value;
+  submitUnfoldedsize(){
+    this.unfoldedsize = this.unfolded_form.value;
     if(this.id==0){
-      this.foptionService.addFinishingoption(this.finishoptions)
+      this.unfoldedService.addUnfoldedsize(this.unfoldedsize)
       .subscribe(
         response => {
           this.data = response;
           this.id = this.data.data.id;
-          this.foptionService.getFinishingoptionSubject.next(true);
+          this.unfoldedService.getUnfoldedsizeSubject.next(true);
+          this.dialogRef.close();
         }
       )
     }else if(this.id>0){
-      this.foptionService.updateFinishingoptions(this.id,this.finishoptions)
+      this.unfoldedService.updateUnfoldedsize(this.id,this.unfoldedsize)
       .subscribe(
         response => {
-          this.foptionService.getFinishingoptionSubject.next(true);
+          this.unfoldedService.getUnfoldedsizeSubject.next(true);
+          this.dialogRef.close();
         }
       )
     }
@@ -107,5 +108,6 @@ export class FinishingoptionsModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
 
 }

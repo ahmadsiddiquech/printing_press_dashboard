@@ -4,11 +4,11 @@
             <div class="col-md-12">
                 <div class="card" >
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Finishing Options List <a mat-button class="pull-right" (click)="createFinishingoption()"><i class="material-icons">create</i> New</a> </h4>
+                        <h4 class="card-title ">Additional Options List <a mat-button class="pull-right" (click)="createAdditionaloption()"><i class="material-icons">create</i> New</a> </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" *ngIf="foptions">
+                            <table class="table" *ngIf="aoptions">
                                 <thead class=" text-primary">
                                     <th>
                                         ID
@@ -27,22 +27,22 @@
                                     </th>
                                 </thead>
                                 <tbody >
-                                    <tr *ngFor="let foption of foptions">
+                                    <tr *ngFor="let aoption of aoptions">
                                         <td>
-                                            {{ foption.id }}
+                                            {{ aoption.id }}
                                         </td>
                                         <td>
-                                            {{ foption.name }}
+                                            {{ aoption.name }}
                                         </td>
                                         <td>
-                                            {{ foption.category }}
+                                            {{ aoption.category }}
                                         </td>
                                         <td>
-                                            {{ foption.subcategory }}
+                                            {{ aoption.subcategory }}
                                         </td>
                                         <td>
-                                            <a mat-raised-button (click)=editFinishingoption(foption) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
-                                            <a mat-raised-button (click)="deleteFinishingoption(foption.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
+                                            <a mat-raised-button (click)=editAdditionaloption(aoption) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                            <a mat-raised-button (click)="deleteAdditionaloption(aoption.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
                                         </td>
                                     </tr>
                                 </tbody>

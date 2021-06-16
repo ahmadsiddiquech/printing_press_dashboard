@@ -17,6 +17,19 @@ import { SubcategoriesModalComponent } from '../../subcategories-modal/subcatego
 
 import { FinishingoptionsComponent } from '../../finishingoptions/finishingoptions.component';
 import { FinishingoptionsModalComponent } from '../../finishingoptions-modal/finishingoptions-modal.component';
+import { AdditionaloptionsComponent } from '../../additionaloptions/additionaloptions.component';
+import { AdditionaloptionsModalComponent } from '../../additionaloptions-modal/additionaloptions-modal.component';
+import { UnfoldedsizeComponent } from '../../unfoldedsize/unfoldedsize.component';
+import { UnfoldedsizeModalComponent } from '../../unfoldedsize-modal/unfoldedsize-modal.component';
+import { FoldingstyleComponent } from '../../foldingstyle/foldingstyle.component';
+import { FoldingstyleModalComponent } from '../../foldingstyle-modal/foldingstyle-modal.component';
+import { PrintedsidesComponent } from '../../printedsides/printedsides.component';
+import { PrintedsidesModalComponent } from '../../printedsides-modal/printedsides-modal.component';
+import { PapertypeComponent } from '../../papertype/papertype.component';
+import { PapertypeModalComponent } from '../../papertype-modal/papertype-modal.component';
+
+import { ProductsComponent } from '../../products/products.component';
+import { ProductsModalComponent } from '../../products-modal/products-modal.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -26,8 +39,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ProductsComponent } from 'app/products/products.component';
-import { ProductsModalComponent } from 'app/products-modal/products-modal.component';
+
+
 
 @NgModule({
   imports: [
@@ -56,6 +69,16 @@ import { ProductsModalComponent } from 'app/products-modal/products-modal.compon
     FinishingoptionsModalComponent,
     ProductsComponent,
     ProductsModalComponent,
+    AdditionaloptionsComponent,
+    AdditionaloptionsModalComponent,
+    UnfoldedsizeComponent,
+    UnfoldedsizeModalComponent,
+    FoldingstyleComponent,
+    FoldingstyleModalComponent,
+    PrintedsidesComponent,
+    PrintedsidesModalComponent,
+    PapertypeComponent,
+    PapertypeModalComponent,
   ]
 })
 

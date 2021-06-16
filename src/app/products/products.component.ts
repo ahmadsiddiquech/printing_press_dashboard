@@ -20,6 +20,8 @@ export class ProductsComponent implements OnInit {
   categories: any;
   foptions: any;
   products: any;
+  result: any;
+  data: any;
 
   constructor(private subcatService : SubcategoriesService,private productService : ProductsService,private catService : CategoriesService,private foptionsService : FinishingoptionsService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
@@ -34,9 +36,9 @@ export class ProductsComponent implements OnInit {
     this.catService.getCategories()
     .subscribe(
       response => {
-        this.categories = response;
-        if(this.categories.success){
-          this.categories = this.categories.data;
+        this.result = response;
+        if(this.result.success){
+          this.categories = this.result.data;
         }
       },
       error => {
@@ -46,9 +48,9 @@ export class ProductsComponent implements OnInit {
     this.subcatService.getSubcategories()
     .subscribe(
       response => {
-        this.subcategories = response;
-        if(this.subcategories.success){
-          this.subcategories = this.subcategories.data;
+        this.result = response;
+        if(this.result.success){
+          this.subcategories = this.result.data;
         }
       },
       error => {
@@ -58,9 +60,9 @@ export class ProductsComponent implements OnInit {
     this.foptionsService.getFinishingoptions()
     .subscribe(
       response => {
-        this.foptions = response;
-        if(this.foptions.success){
-          this.foptions = this.foptions.data;
+        this.result = response;
+        if(this.result.success){
+          this.foptions = this.result.data;
         }
       },
       error => {
@@ -70,9 +72,9 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts()
     .subscribe(
       response => {
-        this.products = response;
-        if(this.products.success){
-          this.products = this.products.data;
+        this.result = response;
+        if(this.result.success){
+          this.products = this.result.data;
         }
       },
       error => {
@@ -82,12 +84,12 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(id:any){
-    this.subcatService.deleteSubcategory(id)
+    this.productService.deleteProduct(id)
     .subscribe(
       response => {
-        this.subcategories = response;
-        if(this.subcategories.success){
-          this.snackBar.open(this.subcategories.message, 'Okay', {
+        this.result = response;
+        if(this.result.success){
+          this.snackBar.open(this.result.message, 'Okay', {
             duration: 5 * 1000,
           });
           this.fetchProducts();
@@ -106,10 +108,23 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  editProduct(data:any){
-    this.dialog.open(ProductsModalComponent,{
-      width: '600px',
-      data : {form:data,title:'Update Product',button:'Update',id:data.id}
-    });
+  editProduct(id:any){
+    this.productService.getProduct(id)
+    .subscribe(
+      response => {
+        this.result = response;
+        if(this.result.success){
+          this.data = this.result;
+          this.dialog.open(ProductsModalComponent,{
+            width: '600px',
+            data : {form:this.data,title:'Update Product',button:'Update',id:id}
+          });
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
+    
   }
 }
