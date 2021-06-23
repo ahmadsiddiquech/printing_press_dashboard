@@ -28,8 +28,13 @@ import { PrintedsidesModalComponent } from '../../printedsides-modal/printedside
 import { PapertypeComponent } from '../../papertype/papertype.component';
 import { PapertypeModalComponent } from '../../papertype-modal/papertype-modal.component';
 
+import { ProductoptionsComponent } from '../../productoptions/productoptions.component';
+import { ProductoptionsModalComponent } from '../../productoptions-modal/productoptions-modal.component';
+
 import { ProductsComponent } from '../../products/products.component';
 import { ProductsModalComponent } from '../../products-modal/products-modal.component';
+
+import { ProductoptionsuploadModalComponent } from '../../productoptionsupload-modal/productoptionsupload-modal.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -79,7 +84,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     PrintedsidesModalComponent,
     PapertypeComponent,
     PapertypeModalComponent,
+    ProductoptionsComponent,
+    ProductoptionsModalComponent,
+    ProductoptionsuploadModalComponent,
   ]
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }

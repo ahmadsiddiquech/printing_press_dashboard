@@ -35,6 +35,7 @@ export class ProductsModalComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<FinishingoptionsModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
+        dialogRef.disableClose = true;
         this.data = data.form?.data
         this.f_options = data.form?.f_options
         this.title = data.title
@@ -53,15 +54,15 @@ export class ProductsModalComponent implements OnInit {
       if(this.data != null){
 
         this.product_form.controls['name'].setValue(this.data.name);
-        this.product_form.controls['price'].setValue(this.data.price);
+        // this.product_form.controls['price'].setValue(this.data.price);
         this.product_form.controls['category_id'].setValue(this.data.category_id);
         this.product_form.controls['subcategory_id'].setValue(this.data.subcategory_id);
         this.product_form.controls['description'].setValue(this.data.description);
         
-        for(let i = 0;i < this.f_options.length;i++){
-          this.f_op.push(this.f_options[i].id);
-        }
-        this.product_form.controls['finishingoptions_id'].setValue(this.f_op);
+        // for(let i = 0;i < this.f_options.length;i++){
+        //   this.f_op.push(this.f_options[i].id);
+        // }
+        // this.product_form.controls['finishingoptions_id'].setValue(this.f_op);
         
         this.subcatService.getSubcategoryByCategory(this.data.category_id)
         .subscribe(
@@ -83,10 +84,10 @@ export class ProductsModalComponent implements OnInit {
    
   product_form = new FormGroup({
     name: new FormControl(''),
-    price: new FormControl(''),
+    // price: new FormControl(''),
     subcategory_id: new FormControl(''),
     category_id: new FormControl(''),
-    finishingoptions_id: new FormControl(''),
+    // finishingoptions_id: new FormControl(''),
     description: new FormControl(''),
     image: new FormControl(''),
   });

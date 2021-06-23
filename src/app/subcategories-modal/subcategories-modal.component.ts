@@ -25,6 +25,7 @@ export class SubcategoriesModalComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<SubcategoriesModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
+      dialogRef.disableClose = true;
       this.data = data.form
       this.title = data.title
       this.button = data.button

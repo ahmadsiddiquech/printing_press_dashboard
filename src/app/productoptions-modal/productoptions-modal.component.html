@@ -1,0 +1,98 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<form [formGroup]="poptions_form" (ngSubmit)="submitProductoption()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="p_id" required="required" type="text" placeholder="Enter P ID">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="product_id" required="required" type="text"
+                    placeholder="Enter Product ID">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="product_type" required="required" type="text"
+                    placeholder="Enter product type">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="quantity" required="required" type="text" placeholder="Enter quantity">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="finishing_size" required="required" type="text"
+                    placeholder="Enter finishing size">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="printed_pages" required="required" type="text"
+                    placeholder="Enter printed pages">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="stock" required="required" type="text" placeholder="Enter stock">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="cover" required="required" type="text" placeholder="Enter cover">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="one_day" required="required" type="text" placeholder="Enter one day">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="two_day" required="required" type="text" placeholder="Enter two day">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="three_day" required="required" type="text"
+                    placeholder="Enter three day">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="seven_day" required="required" type="text"
+                    placeholder="Enter seven day">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="vat" required="required" type="text" placeholder="Enter vat">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <mat-dialog-actions class="pull-right">
+        <div>
+            <button mat-raised-button type="submit" class="btn btn-success">{{button}}</button>
+            <button type="button" mat-dialog-close mat-button class="btn btn-danger">Cancel</button>
+
+        </div>
+    </mat-dialog-actions>
+
+</form>

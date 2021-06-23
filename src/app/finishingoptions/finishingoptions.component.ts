@@ -14,6 +14,7 @@ export class FinishingoptionsComponent implements OnInit {
 
   foptions:any;
   category: any;
+  result: any;
 
   constructor(private foptionsService : FinishingoptionsService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
@@ -28,9 +29,9 @@ export class FinishingoptionsComponent implements OnInit {
     this.foptionsService.getFinishingoptions()
     .subscribe(
       response => {
-        this.foptions = response;
-        if(this.foptions.success){
-          this.foptions = this.foptions.data;
+        this.result = response;
+        if(this.result.success){
+          this.foptions = this.result.data;
         }
       },
       error => {
@@ -43,9 +44,9 @@ export class FinishingoptionsComponent implements OnInit {
     this.foptionsService.deleteFinishingoption(id)
     .subscribe(
       response => {
-        this.foptions = response;
-        if(this.foptions.success){
-          this.snackBar.open(this.foptions.message, 'Okay', {
+        this.result = response;
+        if(this.result.success){
+          this.snackBar.open(this.result.message, 'Okay', {
             duration: 5 * 1000,
           });
           this.fetchFinishingoption();

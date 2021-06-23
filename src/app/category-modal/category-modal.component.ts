@@ -22,6 +22,7 @@ export class CategoryModalComponent{
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CategoryModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
+      dialogRef.disableClose = true;
       this.data = data.form
       this.title = data.title
       this.button = data.button

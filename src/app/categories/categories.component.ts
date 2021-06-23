@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class CategoriesComponent implements OnInit {
   categories:any;
   category: any;
+  result: any;
 
   constructor(private catService : CategoriesService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
@@ -27,9 +28,9 @@ export class CategoriesComponent implements OnInit {
     this.catService.getCategories()
     .subscribe(
       response => {
-        this.categories = response;
-        if(this.categories.success){
-          this.categories = this.categories.data;
+        this.result = response;
+        if(this.result.success){
+          this.categories = this.result.data;
         }
       },
       error => {
@@ -42,9 +43,9 @@ export class CategoriesComponent implements OnInit {
     this.catService.deleteCategory(id)
     .subscribe(
       response => {
-        this.categories = response;
-        if(this.categories.success){
-          this.snackBar.open(this.categories.message, 'Okay', {
+        this.result = response;
+        if(this.result.success){
+          this.snackBar.open(this.result.message, 'Okay', {
             duration: 5 * 1000,
           });
           this.fetchCategories();

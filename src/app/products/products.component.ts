@@ -127,4 +127,24 @@ export class ProductsComponent implements OnInit {
     )
     
   }
+
+  importProducts(id:any){
+    this.productService.getProduct(id)
+    .subscribe(
+      response => {
+        this.result = response;
+        if(this.result.success){
+          this.data = this.result;
+          this.dialog.open(ProductsModalComponent,{
+            width: '600px',
+            data : {form:this.data,title:'Update Product',button:'Update',id:id}
+          });
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
+    
+  }
 }

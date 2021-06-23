@@ -13,6 +13,7 @@ import { SubcategoriesModalComponent } from 'app/subcategories-modal/subcategori
 export class SubcategoriesComponent implements OnInit {
   subcategories:any;
   category: any;
+  result: any;
 
   constructor(private subcatService : SubcategoriesService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
@@ -27,9 +28,9 @@ export class SubcategoriesComponent implements OnInit {
     this.subcatService.getSubcategories()
     .subscribe(
       response => {
-        this.subcategories = response;
-        if(this.subcategories.success){
-          this.subcategories = this.subcategories.data;
+        this.result = response;
+        if(this.result.success){
+          this.subcategories = this.result.data;
         }
       },
       error => {
@@ -42,9 +43,9 @@ export class SubcategoriesComponent implements OnInit {
     this.subcatService.deleteSubcategory(id)
     .subscribe(
       response => {
-        this.subcategories = response;
-        if(this.subcategories.success){
-          this.snackBar.open(this.subcategories.message, 'Okay', {
+        this.result = response;
+        if(this.result.success){
+          this.snackBar.open(this.result.message, 'Okay', {
             duration: 5 * 1000,
           });
           this.fetchSubcategories();

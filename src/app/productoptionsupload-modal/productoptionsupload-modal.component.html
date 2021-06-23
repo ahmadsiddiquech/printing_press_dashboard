@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<form [formGroup]="product_form" (ngSubmit)="submitProductoptionupload()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="example-full-width">
+                <button type="button" mat-raised-button (click)="fileInput.click()"
+                    style="border: 1px solid #f4b41a">Choose File &nbsp;
+                    <i class="material-icons">image</i>
+                </button>
+                <input hidden #fileInput type="file" id="file" formControlName="file" (change)="onFileChange($event)">
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <mat-dialog-actions class="pull-right">
+        <div>
+            <button mat-raised-button type="submit" class="btn btn-success">{{button}}</button>
+            <button type="button" mat-dialog-close mat-button class="btn btn-danger">Cancel</button>
+
+        </div>
+    </mat-dialog-actions>
+
+</form>
