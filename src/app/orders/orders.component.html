@@ -2,13 +2,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card" >
+                <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Unfolded Size List <a mat-button class="pull-right" (click)="createUnfoldedsize()"><i class="material-icons">create</i> New</a> </h4>
+                        <h4 class="card-title ">Orders List
+                        </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" *ngIf="unfoldedsize">
+                            <table class="table" *ngIf="orders">
                                 <thead class=" text-primary">
                                     <th>
                                         ID
@@ -17,32 +18,33 @@
                                         Name
                                     </th>
                                     <th>
-                                        Category
+                                        Total Price
                                     </th>
                                     <th>
-                                        Subcategory
+                                        Status
                                     </th>
                                     <th>
                                         Actions
                                     </th>
                                 </thead>
-                                <tbody >
-                                    <tr *ngFor="let unfolded of unfoldedsize">
+                                <tbody>
+                                    <tr *ngFor="let order of orders">
                                         <td>
-                                            {{ unfolded.id }}
+                                            {{ order.id }}
                                         </td>
                                         <td>
-                                            {{ unfolded.name }}
+                                            {{ order.first_name }}
                                         </td>
                                         <td>
-                                            {{ unfolded.category }}
+                                            {{ order.total_price }}
                                         </td>
                                         <td>
-                                            {{ unfolded.subcategory }}
+                                            {{ order.order_status }}
                                         </td>
                                         <td>
-                                            <a mat-raised-button (click)=editUnfoldedsize(unfolded) class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
-                                            <a mat-raised-button (click)="deleteUnfoldedsize(unfolded.id)" class="btn-outline-danger"><i class="material-icons">clear</i></a>
+                                            <a mat-raised-button (click)=editOrder(order.id)
+                                                class="btn-outline-primary"><i class="material-icons">edit_note</i></a>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -53,5 +55,4 @@
             </div>
         </div>
     </div>
-  </div>
-  
+</div>

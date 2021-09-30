@@ -78,4 +78,25 @@ export class ProductoptionsComponent implements OnInit {
     });
   }
 
+  deleteAllProductoptions() {
+    if (confirm('Are you sure you want to delet all product options?')) {
+      this.poptionsService.deleteAllProductoptions()
+        .subscribe(
+          response => {
+            this.result = response;
+            if (this.result.success) {
+              this.snackBar.open(this.result.message, 'Okay', {
+                duration: 5 * 1000,
+              });
+              this.fetchProductoptions();
+            }
+          },
+          error => {
+            console.log(error)
+          }
+        )
+    }
+
+  }
+
 }

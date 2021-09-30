@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoriesService } from 'app/common/services/categories.service';
-import { FinishingoptionsService } from 'app/common/services/finishingoptions.service';
 import { ProductsService } from 'app/common/services/products.service';
 import { SubcategoriesService } from 'app/common/services/subcategories.service';
 import { ProductsModalComponent } from 'app/products-modal/products-modal.component';
@@ -11,11 +10,11 @@ import { ProductsModalComponent } from 'app/products-modal/products-modal.compon
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  providers: [MatSnackBar,MatDialog]
+  providers: [MatSnackBar, MatDialog]
 })
 export class ProductsComponent implements OnInit {
 
-  subcategories:any;
+  subcategories: any;
   category: any;
   categories: any;
   foptions: any;
@@ -23,128 +22,115 @@ export class ProductsComponent implements OnInit {
   result: any;
   data: any;
 
-  constructor(private subcatService : SubcategoriesService,private productService : ProductsService,private catService : CategoriesService,private foptionsService : FinishingoptionsService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(private subcatService: SubcategoriesService, private productService: ProductsService, private catService: CategoriesService, private snackBar: MatSnackBar, public dialog: MatDialog) { }
 
-  ngOnInit(){
-    this.productService.getProductSubject.subscribe(()=>{
+  ngOnInit() {
+    this.productService.getProductSubject.subscribe(() => {
       this.fetchProducts();
     })
-    
   }
 
-  fetchProducts(){
+  fetchProducts() {
     this.catService.getCategories()
-    .subscribe(
-      response => {
-        this.result = response;
-        if(this.result.success){
-          this.categories = this.result.data;
+      .subscribe(
+        response => {
+          this.result = response;
+          if (this.result.success) {
+            this.categories = this.result.data;
+          }
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      )
     this.subcatService.getSubcategories()
-    .subscribe(
-      response => {
-        this.result = response;
-        if(this.result.success){
-          this.subcategories = this.result.data;
+      .subscribe(
+        response => {
+          this.result = response;
+          if (this.result.success) {
+            this.subcategories = this.result.data;
+          }
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
-    this.foptionsService.getFinishingoptions()
-    .subscribe(
-      response => {
-        this.result = response;
-        if(this.result.success){
-          this.foptions = this.result.data;
-        }
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      )
     this.productService.getProducts()
-    .subscribe(
-      response => {
-        this.result = response;
-        if(this.result.success){
-          this.products = this.result.data;
+      .subscribe(
+        response => {
+          this.result = response;
+          if (this.result.success) {
+            this.products = this.result.data;
+          }
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      )
   }
 
-  deleteProduct(id:any){
+  deleteProduct(id: any) {
     this.productService.deleteProduct(id)
-    .subscribe(
-      response => {
-        this.result = response;
-        if(this.result.success){
-          this.snackBar.open(this.result.message, 'Okay', {
-            duration: 5 * 1000,
-          });
-          this.fetchProducts();
+      .subscribe(
+        response => {
+          this.result = response;
+          if (this.result.success) {
+            this.snackBar.open(this.result.message, 'Okay', {
+              duration: 5 * 1000,
+            });
+            this.fetchProducts();
+          }
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      )
   }
 
-  createProducts(){
-    this.dialog.open(ProductsModalComponent,{
+  createProducts() {
+    this.dialog.open(ProductsModalComponent, {
       width: '600px',
-      data: {title:'Add Products',button:'Add',id:0},
+      data: { title: 'Add Products', button: 'Add', id: 0 },
     });
   }
 
-  editProduct(id:any){
+  editProduct(id: any) {
     this.productService.getProduct(id)
-    .subscribe(
-      response => {
-        this.result = response;
-        if(this.result.success){
-          this.data = this.result;
-          this.dialog.open(ProductsModalComponent,{
-            width: '600px',
-            data : {form:this.data,title:'Update Product',button:'Update',id:id}
-          });
+      .subscribe(
+        response => {
+          this.result = response;
+          if (this.result.success) {
+            this.data = this.result;
+            this.dialog.open(ProductsModalComponent, {
+              width: '600px',
+              data: { form: this.data, title: 'Update Product', button: 'Update', id: id }
+            });
+          }
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
-    
+      )
+
   }
 
-  importProducts(id:any){
+  importProducts(id: any) {
     this.productService.getProduct(id)
-    .subscribe(
-      response => {
-        this.result = response;
-        if(this.result.success){
-          this.data = this.result;
-          this.dialog.open(ProductsModalComponent,{
-            width: '600px',
-            data : {form:this.data,title:'Update Product',button:'Update',id:id}
-          });
+      .subscribe(
+        response => {
+          this.result = response;
+          if (this.result.success) {
+            this.data = this.result;
+            this.dialog.open(ProductsModalComponent, {
+              width: '600px',
+              data: { form: this.data, title: 'Update Product', button: 'Update', id: id }
+            });
+          }
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
-    
+      )
+
   }
 }

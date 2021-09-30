@@ -27,6 +27,10 @@ export class ProductoptionsService {
     return this.http.delete(this.productsoptionsUrl + '/' + id);
   }
 
+  deleteAllProductoptions() {
+    return this.http.delete(this.productsoptionsUrl + '/delete_all/' + 0);
+  }
+
   updateProductsoptions(id: any, productoptions: any) {
     return this.http.put(this.productsoptionsUrl + '/' + id, productoptions);
   }

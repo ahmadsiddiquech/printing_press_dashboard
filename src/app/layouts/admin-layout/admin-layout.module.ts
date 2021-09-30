@@ -15,19 +15,6 @@ import { CategoryModalComponent } from '../../category-modal/category-modal.comp
 import { SubcategoriesComponent } from '../../subcategories/subcategories.component';
 import { SubcategoriesModalComponent } from '../../subcategories-modal/subcategories-modal.component';
 
-import { FinishingoptionsComponent } from '../../finishingoptions/finishingoptions.component';
-import { FinishingoptionsModalComponent } from '../../finishingoptions-modal/finishingoptions-modal.component';
-import { AdditionaloptionsComponent } from '../../additionaloptions/additionaloptions.component';
-import { AdditionaloptionsModalComponent } from '../../additionaloptions-modal/additionaloptions-modal.component';
-import { UnfoldedsizeComponent } from '../../unfoldedsize/unfoldedsize.component';
-import { UnfoldedsizeModalComponent } from '../../unfoldedsize-modal/unfoldedsize-modal.component';
-import { FoldingstyleComponent } from '../../foldingstyle/foldingstyle.component';
-import { FoldingstyleModalComponent } from '../../foldingstyle-modal/foldingstyle-modal.component';
-import { PrintedsidesComponent } from '../../printedsides/printedsides.component';
-import { PrintedsidesModalComponent } from '../../printedsides-modal/printedsides-modal.component';
-import { PapertypeComponent } from '../../papertype/papertype.component';
-import { PapertypeModalComponent } from '../../papertype-modal/papertype-modal.component';
-
 import { ProductoptionsComponent } from '../../productoptions/productoptions.component';
 import { ProductoptionsModalComponent } from '../../productoptions-modal/productoptions-modal.component';
 
@@ -35,6 +22,7 @@ import { ProductsComponent } from '../../products/products.component';
 import { ProductsModalComponent } from '../../products-modal/products-modal.component';
 
 import { ProductoptionsuploadModalComponent } from '../../productoptionsupload-modal/productoptionsupload-modal.component';
+import { OrdersComponent } from '../../orders/orders.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -70,23 +58,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     CategoriesComponent,
     SubcategoriesModalComponent,
     SubcategoriesComponent,
-    FinishingoptionsComponent,
-    FinishingoptionsModalComponent,
     ProductsComponent,
     ProductsModalComponent,
-    AdditionaloptionsComponent,
-    AdditionaloptionsModalComponent,
-    UnfoldedsizeComponent,
-    UnfoldedsizeModalComponent,
-    FoldingstyleComponent,
-    FoldingstyleModalComponent,
-    PrintedsidesComponent,
-    PrintedsidesModalComponent,
-    PapertypeComponent,
-    PapertypeModalComponent,
     ProductoptionsComponent,
     ProductoptionsModalComponent,
     ProductoptionsuploadModalComponent,
+    OrdersComponent,
   ]
 })
 
