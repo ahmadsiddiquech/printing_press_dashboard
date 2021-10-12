@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class ProductoptionsService {
 
-  private productsoptionsUrl = `http://localhost:3000/api/productoptions`;
+  private productsoptionsUrl = `https://printingpressapi.herokuapp.com/api/productoptions`;
   constructor(private http: HttpClient) { }
   public getProductsoptionsubject: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 

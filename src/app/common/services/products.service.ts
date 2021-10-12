@@ -7,31 +7,31 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class ProductsService {
 
-  private productsUrl = `http://localhost:3000/api/products`;
-  constructor(private http:HttpClient) { }
-  public getProductSubject:BehaviorSubject<any>=new BehaviorSubject<any>(false);
+  private productsUrl = `https://printingpressapi.herokuapp.com/api/products`;
+  constructor(private http: HttpClient) { }
+  public getProductSubject: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 
-  getProducts():Observable<any>{
+  getProducts(): Observable<any> {
     return this.http.get(this.productsUrl);
   }
 
-  getProduct(id:any){
-    return this.http.get(this.productsUrl+'/'+id);
+  getProduct(id: any) {
+    return this.http.get(this.productsUrl + '/' + id);
   }
 
-  addProduct(product: any){
-    return this.http.post(this.productsUrl,product);
+  addProduct(product: any) {
+    return this.http.post(this.productsUrl, product);
   }
 
-  deleteProduct(id:any){
-    return this.http.delete(this.productsUrl+'/'+id);
+  deleteProduct(id: any) {
+    return this.http.delete(this.productsUrl + '/' + id);
   }
 
-  updateProducts(id:any,product:any){
-    return this.http.put(this.productsUrl+'/'+id,product);
+  updateProducts(id: any, product: any) {
+    return this.http.put(this.productsUrl + '/' + id, product);
   }
 
-  updateProductsImage(id:any,product:any){
-    return this.http.put(this.productsUrl+'/upload_image/'+id,product);
+  updateProductsImage(id: any, product: any) {
+    return this.http.put(this.productsUrl + '/upload_image/' + id, product);
   }
 }
